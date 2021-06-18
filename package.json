@@ -21,16 +21,16 @@
   "homepage": "https://github.com/ivuorinen/generic-landing-page#readme",
   "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
+    "autoprefixer": "^10.2.6",
     "browser-sync": "^2.26.14",
     "browser-sync-webpack-plugin": "^2.3.0",
-    "laravel-mix": "^6.0.19",
+    "laravel-mix": "^6.0.22",
     "mix-tailwindcss": "^1.3.0",
-    "postcss": "^8.3.0",
+    "postcss": "^8.3.5",
     "postcss-import": "^14.0.2",
     "resolve-url-loader": "^4.0.0",
-    "sass": "^1.34.0",
+    "sass": "^1.35.1",
     "sass-loader": "^11.1.1",
-    "tailwindcss": "^2.1.2"
+    "tailwindcss": "^2.2.0"
   }
 }
