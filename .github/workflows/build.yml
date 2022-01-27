@@ -23,10 +23,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build assets
+    - name: Build production assets
       run: |
         npm install
-        npm run build --if-present
+        npm run prod --if-present
 
     - name: Store artifacts
       uses: actions/upload-artifact@v2
@@ -35,8 +35,6 @@ jobs:
         path: dist
 
     - name: Build GitHub Pages
-      # You may pin to the exact commit or the version.
-      # uses: crazy-max/ghaction-github-pages@a117e4aa1fb4854d021546d2abdfac95be568a3a
       uses: crazy-max/ghaction-github-pages@v2.6.0
       with:
         build_dir: dist
