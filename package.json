@@ -27,7 +27,7 @@
     "browser-sync": "2.27.10",
     "browser-sync-webpack-plugin": "2.3.0",
     "engine.io": "6.2.0",
-    "laravel-mix": "6.0.43",
+    "laravel-mix": "6.0.44",
     "mix-tailwindcss": "1.3.0",
     "postcss": "8.4.14",
     "postcss-import": "14.1.0",
