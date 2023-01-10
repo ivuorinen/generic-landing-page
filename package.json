@@ -10,7 +10,7 @@
     "prod": "npx mix build -p"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "repository": {
     "type": "git",
