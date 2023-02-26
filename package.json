@@ -24,7 +24,7 @@
   "homepage": "https://github.com/ivuorinen/generic-landing-page#readme",
   "devDependencies": {
     "autoprefixer": "10.4.13",
-    "browser-sync": "2.27.11",
+    "browser-sync": "2.27.12",
     "browser-sync-webpack-plugin": "2.3.0",
     "engine.io": "6.2.1",
     "laravel-mix": "6.0.49",
