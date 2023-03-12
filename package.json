@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/ivuorinen/generic-landing-page#readme",
   "devDependencies": {
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.14",
     "browser-sync": "2.28.3",
     "browser-sync-webpack-plugin": "2.3.0",
     "engine.io": "6.4.1",
