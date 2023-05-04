@@ -26,7 +26,7 @@
     "autoprefixer": "10.4.14",
     "browser-sync": "2.29.1",
     "browser-sync-webpack-plugin": "2.3.0",
-    "engine.io": "6.4.1",
+    "engine.io": "6.4.2",
     "laravel-mix": "6.0.49",
     "mix-tailwindcss": "1.3.0",
     "postcss": "8.4.23",
