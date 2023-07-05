@@ -1,11 +1,14 @@
 name: Build example page
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -16,28 +19,28 @@ jobs:
         node-version: [18.x]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Build production assets
-      run: |
-        npm install
-        npm run prod --if-present
+      - name: Build production assets
+        run: |
+          npm install
+          npm run prod --if-present
 
-    - name: Store artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-site
-        path: dist
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-site
+          path: dist
 
-    - name: Build GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v3.1.0
-      with:
-        build_dir: dist
-        jekyll: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          build_dir: dist
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
