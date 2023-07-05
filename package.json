@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/ivuorinen/generic-landing-page#readme",
   "devDependencies": {
+    "@ivuorinen/eslint-config": "^0.1.11",
+    "@ivuorinen/stylelint-config": "^0.1.19",
     "autoprefixer": "10.4.14",
     "browser-sync": "2.29.3",
     "browser-sync-webpack-plugin": "2.3.0",
