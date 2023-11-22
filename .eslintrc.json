@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "@ivuorinen/eslint-config"
-  ]
+  "extends": ["@ivuorinen/eslint-config"]
 }

@@ -5,10 +5,12 @@
   "scripts": {
     "build": "npx mix build",
     "dev": "npx mix build",
-    "prod": "npx mix build -p"
+    "prod": "npx mix build -p",
+    "eslint:fix": "eslint '**/*.{js,tsx,ts}' --fix",
+    "eslint:report": "eslint '**/*.{js,tsx,ts}'"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
