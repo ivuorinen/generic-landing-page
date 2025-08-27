@@ -24,7 +24,7 @@
   "homepage": "https://github.com/ivuorinen/generic-landing-page#readme",
   "devDependencies": {
     "@ivuorinen/eslint-config": "^0.4.0",
-    "@ivuorinen/stylelint-config": "^0.2.0",
+    "@ivuorinen/stylelint-config": "^0.3.0",
     "autoprefixer": "^10.4.16",
     "browser-sync": "*",
     "browser-sync-webpack-plugin": "^2.3.0",
