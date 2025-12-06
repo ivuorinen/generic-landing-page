@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 export default defineConfig({
   root: 'src',
@@ -12,7 +12,7 @@ export default defineConfig({
       input: resolve(__dirname, 'src/index.html'),
       output: {
         entryFileNames: 'app.js',
-        assetFileNames: (assetInfo) => {
+        assetFileNames(assetInfo) {
           if (assetInfo.name?.endsWith('.css')) return 'app.css';
           return '[name][extname]';
         },
