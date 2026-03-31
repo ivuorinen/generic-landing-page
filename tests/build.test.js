@@ -1,14 +1,17 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
-import { execSync } from 'node:child_process';
 import { resolve } from 'node:path';
+import { build as viteBuild } from 'vite';
 
 const root = resolve(import.meta.dirname, '..');
 const dist = resolve(root, 'dist');
 
 describe('Production build', () => {
-  it('completes successfully', () => {
-    execSync('npm run build', { cwd: root, stdio: 'pipe' });
+  beforeAll(async () => {
+    await viteBuild({ configFile: resolve(root, 'vite.config.js') });
+  });
+
+  it('creates dist directory', () => {
     expect(existsSync(dist)).toBe(true);
   });
 

@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { createServer } from 'vite';
+import viteConfig from '../vite.config.js';
 
 let server;
 let baseUrl;
@@ -7,8 +8,8 @@ let baseUrl;
 describe('E2E - Vite dev server', () => {
   beforeAll(async () => {
     server = await createServer({
-      root: 'src',
-      server: { port: 0, open: false },
+      ...viteConfig,
+      server: { ...viteConfig.server, port: 0, open: false },
       logLevel: 'silent',
     });
     await server.listen();
@@ -24,8 +25,8 @@ describe('E2E - Vite dev server', () => {
     const res = await fetch(baseUrl);
     expect(res.status).toBe(200);
     const html = await res.text();
-    expect(html).toContain('<!doctype html>');
-    expect(html).toContain('<h1');
+    expect(html).toMatch(/<!doctype html>/i);
+    expect(html).toMatch(/<h1\b/i);
   });
 
   it('serves index.html with correct content type', async () => {
@@ -49,6 +50,6 @@ describe('E2E - Vite dev server', () => {
     const res = await fetch(`${baseUrl}/does-not-exist`);
     expect(res.status).toBe(200);
     const html = await res.text();
-    expect(html).toContain('<h1');
+    expect(html).toMatch(/<h1\b/i);
   });
 });

@@ -1,9 +1,15 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import config from '../vite.config.js';
 
 describe('vite.config.js', () => {
-  const resolvedConfig =
-    typeof config === 'function' ? config({}) : config;
+  let resolvedConfig;
+
+  beforeAll(async () => {
+    resolvedConfig =
+      typeof config === 'function'
+        ? await config({ command: 'build', mode: 'test' })
+        : config;
+  });
 
   it('sets root to src directory', () => {
     expect(resolvedConfig.root).toBe('src');
@@ -28,18 +34,21 @@ describe('vite.config.js', () => {
   });
 
   describe('assetFileNames', () => {
-    const assetFileNames =
-      resolvedConfig.build.rollupOptions.output.assetFileNames;
-
     it('renames CSS files to app.css', () => {
+      const assetFileNames =
+        resolvedConfig.build.rollupOptions.output.assetFileNames;
       expect(assetFileNames({ name: 'style.css' })).toBe('app.css');
     });
 
     it('keeps original name for non-CSS assets', () => {
+      const assetFileNames =
+        resolvedConfig.build.rollupOptions.output.assetFileNames;
       expect(assetFileNames({ name: 'image.png' })).toBe('[name][extname]');
     });
 
     it('handles assets with no name gracefully', () => {
+      const assetFileNames =
+        resolvedConfig.build.rollupOptions.output.assetFileNames;
       expect(assetFileNames({})).toBe('[name][extname]');
     });
   });
