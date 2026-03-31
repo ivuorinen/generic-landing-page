@@ -26,10 +26,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
       - name: Build production assets
-        run: |
-          npm install
-          npm run prod --if-present
+        run: npm run prod --if-present
 
       - name: Store artifacts
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
