@@ -35,7 +35,7 @@
     "autoprefixer": "^10.4.16",
     "axe-core": "^4.11.1",
     "canvas": "^3.2.3",
-    "jsdom": "^29.0.1",
+    "jsdom": "^30.0.0",
     "postcss": "^8.4.31",
     "postcss-import": "^16.0.0",
     "tailwindcss": "^4.1.12",
