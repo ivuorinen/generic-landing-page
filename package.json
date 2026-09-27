@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/ivuorinen/generic-landing-page#readme",
   "devDependencies": {
-    "@ivuorinen/eslint-config": "^1",
+    "@ivuorinen/eslint-config": "^2.0.0",
     "@ivuorinen/stylelint-config": "^1",
     "@tailwindcss/vite": "^4.0.0",
     "@vitest/coverage-v8": "^5.0.0",
