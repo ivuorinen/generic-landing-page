@@ -28,7 +28,10 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      - run: npm ci
+      - run: npm ci --ignore-scripts
+      # canvas is the only dependency whose install script the tests need
+      # (it fetches the native binary jsdom uses for the axe checks).
+      - run: npm rebuild canvas
       - run: npm run lint
       - run: npm test
 
