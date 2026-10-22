@@ -1,18 +1,14 @@
 {
   "name": "@ivuorinen/generic-landing-page",
   "version": "1.0.0",
+  "private": true,
   "description": "Generic landing page with some candy",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "prod": "vite build",
-    "preview": "vite preview",
-    "eslint:fix": "eslint '**/*.{js,tsx,ts}' --fix",
-    "eslint:report": "eslint '**/*.{js,tsx,ts}'",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:watch": "vitest"
   },
   "engines": {
     "node": ">=24"
@@ -29,17 +25,13 @@
   "homepage": "https://github.com/ivuorinen/generic-landing-page#readme",
   "devDependencies": {
     "@ivuorinen/eslint-config": "^2.0.0",
-    "@ivuorinen/stylelint-config": "^1",
-    "@tailwindcss/vite": "^4.0.0",
-    "@vitest/coverage-v8": "^5.0.0",
-    "autoprefixer": "^10.4.16",
     "axe-core": "^4.11.1",
     "canvas": "^3.2.3",
     "jsdom": "^30.0.0",
-    "postcss": "^8.4.31",
-    "postcss-import": "^17.0.0",
-    "tailwindcss": "^4.1.12",
-    "vite": "^8.0.0",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.3"
+  },
+  "allowScripts": {
+    "@ivuorinen/eslint-config@2.0.0": true,
+    "canvas@3.2.3": true
   }
 }

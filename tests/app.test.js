@@ -1,49 +1,42 @@
+import { describe, it, expect } from 'vitest';
+import { JSDOM } from 'jsdom';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+const html = readFileSync(
+  resolve(import.meta.dirname, '..', 'src', 'index.html'),
+  'utf-8',
+);
+
 /**
- * @vitest-environment jsdom
+ * Loads the real page with its inline script running, as a browser would at `url`.
+ * @param {string} url Address the page is served from; sets `location.hostname`.
+ * @returns {{heading: string, title: string}} Text the script left in the h1 and title.
  */
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+function load(url) {
+  const { document } = new JSDOM(html, { url, runScripts: 'dangerously' }).window;
+  return { heading: document.querySelector('h1').textContent, title: document.title };
+}
 
-describe('app.js - DOMContentLoaded handler', () => {
-  beforeEach(() => {
-    vi.resetModules();
-    document.body.innerHTML = '<h1></h1>';
-    document.title = 'hi there!';
+describe('index.html script', () => {
+  it('shows the hostname as heading and title', () => {
+    expect(load('https://example.com/')).toEqual({ heading: 'example.com', title: 'example.com' });
   });
 
-  it('sets h1 text content to window.location.hostname', async () => {
-    // jsdom sets window.location.hostname to 'localhost'
-    await import('../src/app.js');
-
-    document.dispatchEvent(new Event('DOMContentLoaded'));
-
-    const h1 = document.querySelector('h1');
-    expect(h1.textContent).toBe(globalThis.location.hostname);
+  it('keeps the default text when opened from disk', () => {
+    expect(load('file:///tmp/index.html')).toEqual({ heading: 'hi there!', title: 'hi there!' });
   });
 
-  it('sets document.title to window.location.hostname', async () => {
-    await import('../src/app.js');
-
-    document.dispatchEvent(new Event('DOMContentLoaded'));
-
-    expect(document.title).toBe(globalThis.location.hostname);
-  });
-
-  it('falls back to document.title when hostname is empty', async () => {
-    // Mock location.hostname to return empty string
-    const locationSpy = vi.spyOn(window, 'location', 'get').mockReturnValue({
-      ...window.location,
-      hostname: '',
-    });
-
-    document.title = 'fallback title';
-    await import('../src/app.js');
-
-    document.dispatchEvent(new Event('DOMContentLoaded'));
-
-    const h1 = document.querySelector('h1');
-    expect(h1.textContent).toBe('fallback title');
-    expect(document.title).toBe('fallback title');
-
-    locationSpy.mockRestore();
+  // jsdom's URL parser encodes these to xn-- labels the same way browsers do,
+  // so each case round-trips through the page's decoder.
+  it.each([
+    'müller.de',
+    'www.bücher.example',
+    'müller-weg.example',
+    '中国.example',
+    'пример.испытание',
+    'ελληνικά.example',
+  ])('decodes the internationalized domain %s', (domain) => {
+    expect(load(`https://${domain}/`)).toEqual({ heading: domain, title: domain });
   });
 });
